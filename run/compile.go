@@ -1,7 +1,7 @@
 package run
 
 import (
-	"github.com/laminne/nmoj-worker/compile/langs/c"
+	"kojs3-worker/compile/langs/c"
 	"os"
 )
 

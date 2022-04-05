@@ -2,8 +2,8 @@ package c
 
 import (
 	"context"
-	"github.com/laminne/nmoj-worker/run/langs/lib"
-	runningstatus "github.com/laminne/nmoj-worker/status"
+	"kojs3-worker/run/langs/lib"
+	runningstatus "kojs3-worker/status"
 	"os/exec"
 	"strconv"
 	"syscall"
@@ -13,9 +13,11 @@ import (
 func RunC(i int, TaskID string) (int, runningstatus.TestStatus) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	arg := "cd /work && ./a.out < ../test-case/" + TaskID + "/test_" + strconv.Itoa(i) + ".txt"
+	// Todo: Dockerのとき
+	arg := "/a.out < /test-case/" + TaskID + "/test_" + strconv.Itoa(i) + ".txt"
+	//arg := "cd ./work && ../a.out < ../test-case/" + TaskID + "/test_" + strconv.Itoa(i) + ".txt"
 	startTime := time.Now()
-	cmd := exec.CommandContext(ctx, "sh", "-c", arg)
+	cmd := exec.CommandContext(ctx, "/bin/sh", "-c", arg)
 	out, err := cmd.Output()
 	if err != nil {
 		return 0, runningstatus.TestStatus{}
@@ -25,7 +27,6 @@ func RunC(i int, TaskID string) (int, runningstatus.TestStatus) {
 	exitStatus := cmd.ProcessState.ExitCode()
 	duration := int(time.Since(startTime).Milliseconds())
 	pts, status := lib.CheckExecResult(out, exitStatus, duration, TaskID, i, memory)
-
 
 	return pts, status
 }

@@ -2,8 +2,8 @@ package nodejs
 
 import (
 	"context"
-	"github.com/laminne/nmoj-worker/run/langs/lib"
-	runningstatus "github.com/laminne/nmoj-worker/status"
+	"kojs3-worker/run/langs/lib"
+	runningstatus "kojs3-worker/status"
 	"os/exec"
 	"strconv"
 	"syscall"
@@ -15,7 +15,7 @@ func RunJS(i int, TaskID string) (int, runningstatus.TestStatus) {
 	defer cancel()
 	arg := "node main.js < ./test-case/" + TaskID + "/test_" + strconv.Itoa(i) + ".txt"
 	startTime := time.Now()
-	cmd := exec.CommandContext(ctx, "sh", "-c", arg)
+	cmd := exec.CommandContext(ctx, "/bin/sh", "-c", arg)
 	out, err := cmd.Output()
 	if err != nil {
 		return 0, runningstatus.TestStatus{}
@@ -28,4 +28,3 @@ func RunJS(i int, TaskID string) (int, runningstatus.TestStatus) {
 
 	return pts, status
 }
-
