@@ -1,3 +1,3 @@
-module github.com/laminne/nmoj-worker
+module kojs3-worker
 
 go 1.17

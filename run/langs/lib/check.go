@@ -1,8 +1,8 @@
 package lib
 
 import (
-	runningstatus "github.com/laminne/nmoj-worker/status"
 	"io/ioutil"
+	runningstatus "kojs3-worker/status"
 	"strconv"
 )
 
@@ -14,7 +14,7 @@ func CheckExecResult(result []byte, exitCode int, duration int, TaskID string, i
 			ExitStatus: exitCode,
 			Duration:   duration,
 			Status:     "RE",
-			Memory: memory,
+			Memory:     memory,
 		}
 	}
 
@@ -26,7 +26,7 @@ func CheckExecResult(result []byte, exitCode int, duration int, TaskID string, i
 			TestID:     "",
 			ExitStatus: 0,
 			Duration:   duration,
-			Memory: memory,
+			Memory:     memory,
 			Status:     "IE",
 		}
 	}
@@ -37,7 +37,7 @@ func CheckExecResult(result []byte, exitCode int, duration int, TaskID string, i
 			TestID:     "",
 			ExitStatus: 0,
 			Duration:   duration,
-			Memory: memory,
+			Memory:     memory,
 			Status:     "AC",
 		}
 	} else {
@@ -45,7 +45,7 @@ func CheckExecResult(result []byte, exitCode int, duration int, TaskID string, i
 			TestID:     "",
 			ExitStatus: 0,
 			Duration:   duration,
-			Memory: memory,
+			Memory:     memory,
 			Status:     "WA",
 		}
 	}

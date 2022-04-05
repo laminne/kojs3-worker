@@ -1,10 +1,10 @@
 package run
 
 import (
-	"github.com/laminne/nmoj-worker/run/langs/c"
-	"github.com/laminne/nmoj-worker/run/langs/nodejs"
-	"github.com/laminne/nmoj-worker/run/langs/ruby"
-	"github.com/laminne/nmoj-worker/status"
+	"kojs3-worker/run/langs/c"
+	"kojs3-worker/run/langs/nodejs"
+	"kojs3-worker/run/langs/ruby"
+	"kojs3-worker/status"
 	"os"
 )
 
@@ -17,6 +17,6 @@ func Run(i int, TaskID string) (int, status.TestStatus) {
 		return pts, s
 	} else {
 		pts, s := c.RunC(i, TaskID)
-		return pts,s
+		return pts, s
 	}
 }
